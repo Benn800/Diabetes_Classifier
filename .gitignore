@@ -3,7 +3,7 @@ env/
 
 # Data files
 # data/raw_data/
-# data/processed/
+# data/processed_data/
 
 # Python
 __pycache__/
