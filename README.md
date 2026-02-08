@@ -16,7 +16,7 @@ The analysis follows best practices in applied data mining and aligns with the C
 - **Source:** UCI Machine Learning Repository  
 - **Dataset:** CDC Diabetes Health Indicators  
 - **Description:** Survey data from over 250,000 adults, including demographic, lifestyle, and health-related variables.  
-- **Target Variable:** Diabetes diagnosis (binary)
+- **Target Variable:** Diabetes diagnosis (binary & multiclass)
 
 The dataset is used strictly for academic purposes.
 
@@ -27,16 +27,15 @@ The dataset is used strictly for academic purposes.
 faidm-diabetes-project/
 │
 ├── data/
-│ ├── raw/ # Original dataset 
-│ └── processed/ # Cleaned and preprocessed data
+│ ├── raw_data/ # Original dataset 
+│ └── processed_data/ # Train/val/test split artifacts
 │
 ├── notebooks/
 │ ├── 01_data_understanding.ipynb
-│ ├── 02_preprocessing_eda.ipynb
-│ ├── 03_clustering.ipynb
-│ └── 04_classification.ipynb
+│ ├── 02_preprocessing.ipynb
+│ ├── 03_classification.ipynb
+│ └── 04_clustering.ipynb
 │
-├── figures/ # Exported plots and evaluation figures
 ├── README.md
 ```
 
@@ -48,26 +47,26 @@ Each notebook corresponds to a distinct stage of the data mining lifecycle to en
 
 ### Data Understanding & Preprocessing
 - Exploratory Data Analysis (EDA)
-- Handling class imbalance
-- Feature scaling and preparation
-- Justification of preprocessing decisions
+- Data quality checks, feature types, and distribution analysis
+- Train/validation/test split creation and persistence
 
 ### Clustering (Unsupervised Learning)
-- Algorithm: K-Means
-- Cluster evaluation using internal metrics (e.g., silhouette score)
-- Interpretation of population risk profiles
+- Algorithms: K-Means and Agglomerative Clustering
+- PCA for dimensionality reduction and cluster tendency checks
+- Cluster evaluation using internal metrics (silhouette)
+- Interpretation of population segments
 
 ### Classification (Supervised Learning)
-- Primary model: Logistic Regression
-- Model evaluation using accuracy, precision, recall, F1-score, and ROC-AUC
-- Probability estimation for diabetes risk
-- Comparison with alternative models (where applicable)
+- Models: Logistic Regression (binary and multiclass) and LightGBM
+- Threshold tuning for target recall with precision-recall analysis
+- Evaluation with precision, recall, F1-score, PR-AUC, and confusion matrices
+- Model interpretability via coefficients and SHAP
 
 ---
 
 ## Tools and Technologies
 - **Programming Language:** Python  
-- **Libraries:** pandas, numpy, scikit-learn, matplotlib, seaborn  
+- **Libraries:** pandas, numpy, scikit-learn, matplotlib, seaborn, lightgbm, shap  
 - **Environment:** Jupyter Notebook  
 - **Version Control:** Git & GitHub
 
@@ -82,7 +81,15 @@ Commit history demonstrates iterative development and professional workflow prac
 ## How to Run the Project
 1. Clone the repository  
 2. Ensure required Python libraries are installed  
-3. Run notebooks sequentially from `01_data_understanding.ipynb` to `04_classification.ipynb`
+3. Run notebooks sequentially from `01_data_understanding.ipynb` to `04_clustering.ipynb`
+
+---
+
+## Notebook Guide
+- **01_data_understanding.ipynb**: EDA, feature descriptions, data quality checks, and initial insights.
+- **02_preprocessing.ipynb**: Create stratified train/val/test splits and save them for reuse.
+- **03_classification.ipynb**: Binary and multiclass classification with threshold tuning and evaluation.
+- **04_clustering.ipynb**: PCA-based clustering with model selection and internal validation.
 
 ---
 
